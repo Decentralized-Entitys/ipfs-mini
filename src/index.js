@@ -73,6 +73,7 @@ IPFS.prototype.sendAsync = function sendAsync(opts, cb) {
 
     try {
       var pinningURI = self.provider.pinning && opts.uri === '/add' ? '?pin=true' : '';
+      request.setRequestHeader('Authorization', `multipart/form-data; boundary=${options.boundary}`);
 
       if (options.payload) {
         request.open('POST', `${self.requestBase}${opts.uri}${pinningURI}`);
